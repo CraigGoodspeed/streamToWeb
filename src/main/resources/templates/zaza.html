@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>stream k topic</title>
+    <script type="text/javascript" src="webjars/jquery/3.3.1-1/jquery.min.js" >
+
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            poll();
+
+        });
+        function poll(){
+            $.ajax( {
+                url : "/getKafka",
+                contentType: "application/text",
+                cache : false,
+                success : function(data){
+                    if(data != "") {
+                        html = $("#content").html();
+                        $("#content").html(html + "<br>" + data);
+                    }
+                },
+                error: function(err){
+                    alert(err);
+                }
+            });
+            setTimeout(poll, 3000);
+        }
+    </script>
+</head>
+<body>
+    <div id="content"></div>
+
+</body>
+</html>
