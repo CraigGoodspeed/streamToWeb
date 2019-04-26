@@ -10,7 +10,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.util.Optional;
 
-@Component
+//@Component
 public class KafkaInput {
 
     @Value("${outputFile}")

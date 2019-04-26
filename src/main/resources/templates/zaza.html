@@ -9,7 +9,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
-            poll();
+            stream();
 
         });
         function poll(){
@@ -27,7 +27,14 @@
                     alert(err);
                 }
             });
-            setTimeout(poll, 3000);
+            setTimeout(poll, 10000);
+        }
+        function stream(){
+            var source = new EventSource("/getKafka");
+            source.onmessage = function(event){
+                html = $("#content").html();
+                $("#content").html(html + "<br>" + event.data);
+            }
         }
     </script>
 </head>
